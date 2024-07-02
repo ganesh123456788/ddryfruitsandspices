@@ -1,0 +1,26 @@
+﻿@model webappd.Models.Spices
+
+@{
+    ViewBag.Title = "Upload Spice Image";
+}
+
+<h2>Upload Spice Image</h2>
+
+@using (Html.BeginForm("Create", "SpicesEdit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="ImageFile" id="ImageFile" />
+            @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Upload" class="btn btn-default" />
+        </div>
+    </div>
+}
