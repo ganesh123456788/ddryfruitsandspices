@@ -71,8 +71,11 @@
                 <tr>
                     <th>Image Name</th>
                     <th>Image</th>
+<<<<<<< HEAD
                     <th>Description</th>
                     <th>Price</th>
+=======
+>>>>>>> origin/teja
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -81,6 +84,7 @@
                 {
                     <tr>
                         <td>@chocolate.ImageName</td>
+<<<<<<< HEAD
 
                         <td><img src="@Url.Content(chocolate.ImagePath)" alt="@chocolate.ImageName" style="max-width: 100px; height: auto;" /></td>
                         <td>@chocolate.Description</td>
@@ -89,6 +93,12 @@
                             <a href="@Url.Action("Edit", new { imageName = chocolate.ImageName })" class="edit-button">Edit</a>
                         </td>
 
+=======
+                        <td><img src="@Url.Content(chocolate.ImagePath)" alt="@chocolate.ImageName" style="max-width: 100px; height: auto;" /></td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { imageName = chocolate.ImageName })" class="edit-button">Edit</a>
+                        </td>
+>>>>>>> origin/teja
                     </tr>
                 }
             </tbody>

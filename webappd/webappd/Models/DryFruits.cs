@@ -10,7 +10,10 @@ namespace webappd.Models
         public HttpPostedFileBase ImageFile { get; set; }
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
+<<<<<<< HEAD
         public string Description { get; set; }
         public int Price { get; set; }
+=======
+>>>>>>> origin/teja
     }
 }

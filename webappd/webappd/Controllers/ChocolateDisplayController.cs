@@ -27,7 +27,11 @@ namespace webappd.Controllers
 
                 while (reader.Read())
                 {
+<<<<<<< HEAD
                     Chocolate chocolate = new Chocolate();  
+=======
+                    Chocolate chocolate = new Chocolate();
+>>>>>>> origin/teja
                     chocolate.ImageName = reader["ImageName"].ToString();
                     chocolate.ImagePath = reader["ImagePath"].ToString();
                     chocolates.Add(chocolate);

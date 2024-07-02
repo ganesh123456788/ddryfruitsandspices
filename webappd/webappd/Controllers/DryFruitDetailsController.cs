@@ -22,7 +22,11 @@ namespace webappd.Controllers
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+<<<<<<< HEAD
                 string sqlQuery = "SELECT ImageName, ImagePath, Description, Price FROM DryFruits WHERE ImageName = @ImageName";
+=======
+                string sqlQuery = "SELECT ImageName, ImagePath FROM DryFruits WHERE ImageName = @ImageName";
+>>>>>>> origin/teja
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 command.Parameters.AddWithValue("@ImageName", id);
                 connection.Open();
@@ -32,8 +36,11 @@ namespace webappd.Controllers
                 {
                     dryfruit.ImageName = reader["ImageName"].ToString();
                     dryfruit.ImagePath = reader["ImagePath"].ToString();
+<<<<<<< HEAD
                     dryfruit.Description = reader["Description"].ToString();
                     dryfruit.Price = (int)Convert.ToDecimal(reader["Price"]);
+=======
+>>>>>>> origin/teja
                 }
 
                 reader.Close();
