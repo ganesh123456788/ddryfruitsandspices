@@ -1,0 +1,103 @@
+﻿@model IEnumerable<webappd.Models.Spices>
+
+@{
+    ViewBag.Title = "Spices List";
+    Layout = null;  // Optional: Use if you don't have a layout page
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spices List</title>
+    <style>
+        /* Your custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+        }
+
+        .edit-button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+
+            .edit-button:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Spices List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image Name</th>
+                    <th>Image</th>
+<<<<<<< HEAD
+                    <th>Description</th>
+                    <th>Price</th>
+=======
+>>>>>>> origin/teja
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var spice in Model)
+                {
+                    <tr>
+                        <td>@spice.ImageName</td>
+                        <td><img src="@Url.Content(spice.ImagePath)" alt="@spice.ImageName" style="max-width: 100px; height: auto;" /></td>
+<<<<<<< HEAD
+                        <td>@spice.Description</td>
+                        <td>@spice.Price</td>
+=======
+>>>>>>> origin/teja
+                        <td>
+                            <a href="@Url.Action("Edit", new { imageName = spice.ImageName })" class="edit-button">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
