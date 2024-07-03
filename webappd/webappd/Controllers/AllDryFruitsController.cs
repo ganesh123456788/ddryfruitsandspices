@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-<<<<<<< HEAD
 using System.Diagnostics;
-=======
->>>>>>> origin/teja
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -42,11 +39,7 @@ namespace webappd.Controllers
                         }
                         model.ImageFile.SaveAs(path);
                         model.ImagePath = Url.Content(Path.Combine("~/Content/", fileName));
-<<<<<<< HEAD
                         SaveImageToDatabase(model.ImageName, model.ImagePath, model.Description, model.Price);
-=======
-                        SaveImageToDatabase(model.ImageName, model.ImagePath);
->>>>>>> origin/teja
 
                         // Optionally, redirect to a success page or show a success message
                         return RedirectToAction("Success");
@@ -66,28 +59,17 @@ namespace webappd.Controllers
             return View(model);
         }
 
-<<<<<<< HEAD
         private void SaveImageToDatabase(string imageName, string imagePath, string Description, decimal price)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = "INSERT INTO DryFruits (ImageName, ImagePath,Description, Price) VALUES (@ImageName, @ImagePath, @Description, @Price)";
-=======
-        private void SaveImageToDatabase(string imageName, string imagePath)
-        {
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO DryFruits (ImageName, ImagePath) VALUES (@ImageName, @ImagePath)";
->>>>>>> origin/teja
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@ImageName", imageName);
                     cmd.Parameters.AddWithValue("@ImagePath", imagePath);
-<<<<<<< HEAD
                     cmd.Parameters.AddWithValue("@Description", Description);
                     cmd.Parameters.AddWithValue("@Price", price);
-=======
->>>>>>> origin/teja
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }

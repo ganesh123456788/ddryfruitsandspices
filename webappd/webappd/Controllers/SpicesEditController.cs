@@ -19,11 +19,7 @@ namespace webappd.Controllers
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-<<<<<<< HEAD
                 string query = "SELECT ImageName, ImagePath, Description, Price FROM Spices";
-=======
-                string query = "SELECT ImageName, ImagePath FROM Spices";
->>>>>>> origin/teja
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     con.Open();
@@ -33,13 +29,9 @@ namespace webappd.Controllers
                         Spices spice = new Spices
                         {
                             ImageName = reader["ImageName"].ToString(),
-<<<<<<< HEAD
                             ImagePath = reader["ImagePath"].ToString(),
                             Description = reader["Description"].ToString(),
                             Price = (int)Convert.ToDecimal(reader["Price"])
-=======
-                            ImagePath = reader["ImagePath"].ToString()
->>>>>>> origin/teja
                         };
                         spicesList.Add(spice);
                     }

@@ -123,18 +123,28 @@
                 </div>
             </div>
         </div>
-    </header>
-    >
-    <body>
-        <div>
-            <img src="@Url.Content(Model.ImagePath)" alt="@Model.ImageName">
-            <h3>@Model.ImageName</h3>
-<<<<<<< HEAD
-            <h3>@Model.Description</h3>
-            <h3>@Model.Price</h3>
-=======
->>>>>>> origin/teja
-            <!-- Add more details as needed -->
+    </header>    <body>
+        <div class="center-content">
+            <div class="grid-item">
+                <div class="top-center">
+                    <img src="@Model.ImagePath" height="200px" width="250px" alt="Product Image">
+                </div>
+                <h1 class="text1">@Model.ImageName</h1>
+                <div class="dropdown">
+                    <select id="dropdown-menu" style="height: 30px; width: 130px; font-size: medium;">
+                        <option value="250gms">250gms</option>
+                        <option value="500gms">500gms</option>
+                        <option value="1kg">1kg</option>
+                        <option value="2kgs">2kgs</option>
+                        <option value="3kgs">3kgs</option>
+                        <option value="4kgs">4kgs</option>
+                        <option value="5kgs">5kgs</option>
+                    </select>
+                    <h2 style="text-align: center;"></h2>
+                    <p style="font-size: 20px;" class="text">
+                        <b>BENEFITS:</b> @Model.Description
+                    </p>
+                    <h1 class="text1">@Model.Price</h1>
+                </div>
+            </div>
         </div>
-    </body>
-</html>

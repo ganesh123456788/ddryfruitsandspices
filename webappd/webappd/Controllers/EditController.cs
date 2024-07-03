@@ -31,13 +31,9 @@ namespace webappd.Controllers
                         spices.Add(new Spices
                         {
                             ImageName = reader["ImageName"].ToString(),
-<<<<<<< HEAD
                             ImagePath = reader["ImagePath"].ToString(),
                             Description = reader["Description"].ToString(),
                             Price = (int)Convert.ToDecimal(reader["Price"])
-=======
-                            ImagePath = reader["ImagePath"].ToString()
->>>>>>> origin/teja
                         });
                     }
                 }

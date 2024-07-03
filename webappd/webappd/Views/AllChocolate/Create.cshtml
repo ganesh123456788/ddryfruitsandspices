@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿@model webappd.Models.DryFruits
-=======
-﻿@model webappd.Models.Chocolate
->>>>>>> origin/teja
 @{
     ViewBag.Title = "Create";
     Layout = null;
@@ -131,11 +127,7 @@
     <div class="center-content">
         <h2>Create</h2>
 
-<<<<<<< HEAD
         @using (Html.BeginForm("Create", "AllDryFruits", FormMethod.Post, new { enctype = "multipart/form-data" }))
-=======
-        @using (Html.BeginForm("Create", "AllChocolate", FormMethod.Post, new { enctype = "multipart/form-data" }))
->>>>>>> origin/teja
         {
             <div class="form-group">
                 @Html.LabelFor(m => m.ImageFile, "Item Name:")
@@ -145,7 +137,6 @@
                 @Html.LabelFor(m => m.ImageName, "Image:")
                 @Html.TextBoxFor(m => m.ImageName, new { @class = "form-control" })
             </div>
-<<<<<<< HEAD
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, "Description:")
                 @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
@@ -156,10 +147,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
             <a href="@Url.Action("Index", "DryFruitsTable")"><button type="button" class="btn btn-close">Cancel</button></a>
-=======
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a href="@Url.Action("Index", "ChocolateEdit")"><button type="button" class="btn btn-close">Cancel</button></a>
->>>>>>> origin/teja
         }
 
         @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))

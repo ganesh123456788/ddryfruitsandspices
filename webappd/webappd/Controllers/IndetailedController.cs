@@ -24,7 +24,6 @@ namespace edit.Controllers
             List<CombinedSpices> spicesList = new List<CombinedSpices>();
 
             // Fetch data from Table1
-<<<<<<< HEAD
             string query1 = "SELECT ImageName, ImagePath,Description,Price FROM Spices";
             spicesList.AddRange(FetchSpices(query1));
 
@@ -34,17 +33,6 @@ namespace edit.Controllers
 
             // Fetch data from Table3
             string query3 = "SELECT ImageName, ImagePath , Description , Price FROM Chocolate";
-=======
-            string query1 = "SELECT ImageName, ImagePath FROM Spices";
-            spicesList.AddRange(FetchSpices(query1));
-
-            // Fetch data from Table2
-            string query2 = "SELECT ImageName, ImagePath FROM DryFruits";
-            spicesList.AddRange(FetchSpices(query2));
-
-            // Fetch data from Table3
-            string query3 = "SELECT ImageName, ImagePath FROM Chocolate";
->>>>>>> origin/teja
             spicesList.AddRange(FetchSpices(query3));
 
             return spicesList;
@@ -66,13 +54,9 @@ namespace edit.Controllers
                             CombinedSpices spice = new CombinedSpices
                             {
                                 ImageName = reader["ImageName"].ToString(),
-<<<<<<< HEAD
                                 ImagePath = reader["ImagePath"].ToString(),
                                 Description = reader["Description"].ToString(),
                                 Price = (int)Convert.ToDecimal(reader["Price"])
-=======
-                                ImagePath = reader["ImagePath"].ToString()
->>>>>>> origin/teja
                             };
                             spices.Add(spice);
                         }
