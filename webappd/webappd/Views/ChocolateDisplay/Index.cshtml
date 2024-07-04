@@ -1,8 +1,7 @@
 ﻿@model List<webappd.Models.Chocolate>
-
 @{
-    ViewBag.Title = "Chocolate Matrix";
-    Layout = null;  // Optional: Use if you don't have a layout page
+    ViewBag.Title = "Index";
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +86,7 @@
         }
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
             justify-content: center;
             margin-top: 20px;
@@ -130,22 +129,20 @@
         </div>
     </header>
 
-
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="grid-container">
-                    @foreach (var Chocolate in Model)
-                    {
-                        <div class="grid-item">
-                            <a href="@Url.Action("Details1", "ChocolateDetails", new { id = Chocolate.ImageName })">
-                                <img src="@Url.Content(Chocolate.ImagePath)" alt="@Chocolate.ImageName">
-                            </a>
-                            <h3>@Chocolate.ImageName</h3>
-                        </div>
-                    }
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="grid-container">
+                @foreach (var chocolate in Model)
+                {
+                    <div class="grid-item">
+                        <a href="@Url.Action("Details1", "ChocolateDetails", new { id = chocolate.ImageName })">
+                            <img src="@Url.Content(chocolate.ImagePath)" alt="@chocolate.ImageName">
+                        </a>
+                        <h3>@chocolate.ImageName</h3>
+                    </div>
+                }
             </div>
         </div>
-    </body>
     </div>
+</body>
+</html>

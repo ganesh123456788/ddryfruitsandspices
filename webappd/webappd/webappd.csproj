@@ -223,6 +223,15 @@
     <Content Include="Views\EditDF\Edit.cshtml" />
     <Content Include="Views\EditDF\Index.cshtml" />
     <Content Include="Views\InDetailed\Index.cshtml" />
+    <Content Include="Views\SpicesEdit\Create.cshtml" />
+    <Content Include="Views\SpicesEdit\Edit.cshtml" />
+    <Content Include="Views\SpicesEdit\Delete.cshtml" />
+    <Content Include="Views\ChocolateEdit\Create.cshtml" />
+    <Content Include="Views\ChocolateEdit\Delete.cshtml" />
+    <Content Include="Views\ChocolateEdit\Edit.cshtml" />
+    <Content Include="Views\DryFruitEdit\Create.cshtml" />
+    <Content Include="Views\DryFruitEdit\Edit.cshtml" />
+    <Content Include="Views\DryFruitEdit\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
