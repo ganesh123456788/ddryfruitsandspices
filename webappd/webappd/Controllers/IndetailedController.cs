@@ -1,70 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using webappd.Models;
 
-namespace edit.Controllers
+namespace webappd.Controllers
 {
     public class IndetailedController : Controller
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["SpicesDBConnectionString"].ConnectionString;
-
-        // GET: Indetailed
+        // GET: Indetailed/Index
         public ActionResult Index()
         {
-            var spicesList = GetAllSpices();
-            return View(spicesList);
-        }
+            List<Chocolate> chocolates = new List<Chocolate>();
+            List<DryFruits> dryFruits = new List<DryFruits>();
+            List<CombinedSpices> combinedSpices = new List<CombinedSpices>();
 
-        private List<CombinedSpices> GetAllSpices()
-        {
-            List<CombinedSpices> spicesList = new List<CombinedSpices>();
+            string connectionString = ConfigurationManager.ConnectionStrings["SpicesDBConnectionString"].ConnectionString;
 
-            // Fetch data from Table1
-            string query1 = "SELECT ImageName, ImagePath,Description,Price FROM Spices";
-            spicesList.AddRange(FetchSpices(query1));
-
-            // Fetch data from Table2
-            string query2 = "SELECT ImageName, ImagePath,Description, Price FROM DryFruits";
-            spicesList.AddRange(FetchSpices(query2));
-
-            // Fetch data from Table3
-            string query3 = "SELECT ImageName, ImagePath , Description , Price FROM Chocolate";
-            spicesList.AddRange(FetchSpices(query3));
-
-            return spicesList;
-        }
-
-        private List<CombinedSpices> FetchSpices(string query)
-        {
-            List<CombinedSpices> spices = new List<CombinedSpices>();
-
+            // Fetch Chocolates
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "SELECT ImageName, ImagePath, Description, Price FROM Chocolates";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    chocolates.Add(new Chocolate
                     {
-                        while (reader.Read())
-                        {
-                            CombinedSpices spice = new CombinedSpices
-                            {
-                                ImageName = reader["ImageName"].ToString(),
-                                ImagePath = reader["ImagePath"].ToString(),
-                                Description = reader["Description"].ToString(),
-                                Price = (int)Convert.ToDecimal(reader["Price"])
-                            };
-                            spices.Add(spice);
-                        }
-                    }
+                        ImageName = reader["ImageName"].ToString(),
+                        ImagePath = reader["ImagePath"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Price"))
+                    });
                 }
+                reader.Close();
             }
 
-            return spices;
+            // Fetch Dry Fruits
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ImageName, ImagePath, Description, Price FROM DryFruits";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    dryFruits.Add(new DryFruits
+                    {
+                        ImageName = reader["ImageName"].ToString(),
+                        ImagePath = reader["ImagePath"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Price"))
+                    });
+                }
+                reader.Close();
+            }
+
+            // Fetch Combined Spices
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ImageName, ImagePath, Description, Price FROM Spices";
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    combinedSpices.Add(new CombinedSpices
+                    {
+                        ImageName = reader["ImageName"].ToString(),
+                        ImagePath = reader["ImagePath"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        Price = reader.IsDBNull(reader.GetOrdinal("Price")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Price"))
+                    });
+                }
+                reader.Close();
+            }
+
+            // Pass data to view
+            ViewBag.Chocolates = chocolates;
+            ViewBag.DryFruits = dryFruits;
+            ViewBag.CombinedSpices = combinedSpices;
+
+            return View();
         }
     }
 }

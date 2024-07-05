@@ -2,40 +2,37 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using webappd.Models;
 
 namespace webappd.Controllers
 {
-    public class DryFruitsDisplayController : Controller
+    public class DryfruitsDisplayController : Controller
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["SpicesDBConnectionString"].ConnectionString;
-        // GET: DryFruitsDisplay/Index
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["SpicesDBConnectionString"].ConnectionString;
+
+        // GET: DryFruitsDisplay
         public ActionResult Index()
         {
-            List<DryFruits> dryfruits = new List<DryFruits>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            List<DryFruits> dryFruitsList = new List<DryFruits>();
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string sqlQuery = "SELECT ImageName, ImagePath FROM DryFruits"; // Query to fetch all spices
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT ImageName, ImagePath FROM DryFruits", con);
+                SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    DryFruits dryfruit = new DryFruits();
-                    dryfruit.ImageName = reader["ImageName"].ToString();
-                    dryfruit.ImagePath = reader["ImagePath"].ToString();
-                    dryfruits.Add(dryfruit);
+                    string imagePath = reader["ImagePath"] != DBNull.Value ? reader["ImagePath"].ToString() : "/Images/default-image.png";
+
+                    DryFruits dryFruits = new DryFruits
+                    {
+                        ImageName = reader["ImageName"].ToString(),
+                        ImagePath = imagePath
+                    };
+                    dryFruitsList.Add(dryFruits);
                 }
-
-                reader.Close();
             }
-
-            return View(dryfruits);
+            return View(dryFruitsList);
         }
     }
 }
