@@ -1,0 +1,28 @@
+﻿@model webappd.Models.DryFruits
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<p>Product: @Model.ImageName</p>
+<p>Price: Rs.@Model.Price</p>
+
+<form action="/StripePayment/Charge" method="post">
+    <input type="hidden" name="amount" value="@Model.Price" />
+    <article>
+        <label for="stripeEmail">Email:</label>
+        <input type="email" id="stripeEmail" name="stripeEmail" required />
+    </article>
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="your-publishable-key-here"
+            data-amount="@Model.Price * 100"
+            data-name="Sample Charge"
+            data-description="@Model.ImageName"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-zip-code="true"
+            data-billing-address="true">
+    </script>
+</form>
