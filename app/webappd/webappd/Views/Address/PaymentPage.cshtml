@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Payment";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h1>Proceed with Payment</h1>
+    <h2>Amount: Rs.@ViewBag.Amount/-</h2>
+    <h3>Address: @ViewBag.Address</h3>
+    <form action="/RazorpayPayment/CreateOrder" method="post">
+        <input type="hidden" name="amount" value="@ViewBag.Amount" />
+        <input type="hidden" name="address" value="@ViewBag.Address" />
+        <button type="submit">Pay Now</button>
+    </form>
+</body>
+</html>
