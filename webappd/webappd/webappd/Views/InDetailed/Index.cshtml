@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Products";
+}
+
+<h2>All Products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Image Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Iterate through Chocolates -->
+        @foreach (var chocolate in ViewBag.Chocolates)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content(chocolate.ImagePath)" alt="@chocolate.ImageName" width="100" />
+                </td>
+                <td>Chocolate</td>
+                <td>@chocolate.Description</td>
+                <td>@chocolate.ImageName</td>
+                <td>@chocolate.Price</td>
+            </tr>
+        }
+
+        <!-- Iterate through Dry Fruits -->
+        @foreach (var dryFruit in ViewBag.DryFruits)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content(dryFruit.ImagePath)" alt="@dryFruit.ImageName" width="100" />
+                </td>
+                <td>Dry Fruit</td>
+                <td>@dryFruit.Description</td>
+                <td>@dryFruit.ImageName</td>
+                <td>@dryFruit.Price</td>
+            </tr>
+        }
+
+        <!-- Iterate through Combined Spices -->
+        @foreach (var spice in ViewBag.Spices)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content(spice.ImagePath)" alt="@spice.ImageName" width="100" />
+                </td>
+                <td>Combined Spice</td>
+                <td>@spice.Description</td>
+                <td>@spice.ImageName</td>
+                <td>@spice.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

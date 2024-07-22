@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+<<<<<<< HEAD
 using System.Data;
+=======
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
 using System.Data.SqlClient;
 using System.IO;
 using System.Web;
@@ -17,7 +20,11 @@ namespace webappd.Controllers
         // GET: SpiceEdit/Index
         public ActionResult Index()
         {
+<<<<<<< HEAD
             var spicesList = new List<Spices>();
+=======
+            var dryFruitsList = new List<Spices>();
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT ImageFile, ImageName, ImagePath, Description, Price FROM Spices";
@@ -26,7 +33,11 @@ namespace webappd.Controllers
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+<<<<<<< HEAD
                     var spice = new Spices
+=======
+                    var dryFruits = new Spices
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
                     {
                         ImageName = reader["ImageName"].ToString(),
                         ImagePath = reader["ImagePath"]?.ToString(),
@@ -37,6 +48,7 @@ namespace webappd.Controllers
                     {
                         byte[] imageData = (byte[])reader["ImageFile"];
                         string base64String = Convert.ToBase64String(imageData);
+<<<<<<< HEAD
                         spice.ImagePath = "data:image/png;base64," + base64String;
                     }
                     spicesList.Add(spice);
@@ -44,6 +56,15 @@ namespace webappd.Controllers
                 connection.Close();
             }
             return View(spicesList);
+=======
+                        dryFruits.ImagePath = "data:image/png;base64," + base64String;
+                    }
+                    dryFruitsList.Add(dryFruits);
+                }
+                connection.Close();
+            }
+            return View(dryFruitsList);
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
         }
 
         // GET: SpicesEdit/Create
@@ -55,16 +76,28 @@ namespace webappd.Controllers
         // POST: SpicesEdit/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create(Spices spice)
+=======
+        public ActionResult Create(Spices dryFruits)
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
         {
             if (ModelState.IsValid)
             {
                 byte[] imageData = null;
+<<<<<<< HEAD
                 if (spice.ImageFile != null)
                 {
                     using (var binaryReader = new BinaryReader(spice.ImageFile.InputStream))
                     {
                         imageData = binaryReader.ReadBytes(spice.ImageFile.ContentLength);
+=======
+                if (dryFruits.ImageFile != null)
+                {
+                    using (var binaryReader = new BinaryReader(dryFruits.ImageFile.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(dryFruits.ImageFile.ContentLength);
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
                     }
                 }
 
@@ -72,6 +105,7 @@ namespace webappd.Controllers
                 {
                     string query = "INSERT INTO Spices (ImageFile, ImageName, ImagePath, Description, Price) VALUES (@ImageFile, @ImageName, @ImagePath, @Description, @Price)";
                     SqlCommand command = new SqlCommand(query, connection);
+<<<<<<< HEAD
                     command.Parameters.Add("@ImageFile", SqlDbType.VarBinary).Value = (object)imageData ?? DBNull.Value;
                     command.Parameters.AddWithValue("@ImageName", spice.ImageName);
                     command.Parameters.AddWithValue("@ImagePath", spice.ImagePath ?? (object)DBNull.Value);
@@ -157,6 +191,122 @@ namespace webappd.Controllers
         {
             var spice = GetSpiceByImageName(imageName);
             return View(spice);
+=======
+                    command.Parameters.AddWithValue("@ImageFile", imageData ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@ImageName", dryFruits.ImageName);
+                    command.Parameters.AddWithValue("@ImagePath", dryFruits.ImagePath ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Description", dryFruits.Description);
+                    command.Parameters.AddWithValue("@Price", dryFruits.Price);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                return RedirectToAction("Index");
+            }
+            return View(dryFruits);
+        }
+
+        // GET: SpicesEdit/Edit
+        public ActionResult Edit(string imageName)
+        {
+            Spices dryFruits = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ImageFile, ImageName, ImagePath, Description, Price FROM Spices WHERE ImageName = @ImageName";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ImageName", imageName);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    dryFruits = new Spices
+                    {
+                        ImageName = reader["ImageName"].ToString(),
+                        ImagePath = reader["ImagePath"]?.ToString(),
+                        Description = reader["Description"].ToString(),
+                        Price = Convert.ToInt32(reader["Price"])
+                    };
+                    if (reader["ImageFile"] != DBNull.Value)
+                    {
+                        byte[] imageData = (byte[])reader["ImageFile"];
+                        string base64String = Convert.ToBase64String(imageData);
+                        dryFruits.ImagePath = "data:image/png;base64," + base64String;
+                    }
+                }
+                connection.Close();
+            }
+            return View(dryFruits);
+        }
+
+        // POST: SpicesEdit/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Spices dryFruits)
+        {
+            if (ModelState.IsValid)
+            {
+                byte[] imageData = null;
+                if (dryFruits.ImageFile != null)
+                {
+                    using (var binaryReader = new BinaryReader(dryFruits.ImageFile.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(dryFruits.ImageFile.ContentLength);
+                    }
+                }
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "UPDATE Spices SET ImageFile = @ImageFile, ImagePath = @ImagePath, Description = @Description, Price = @Price WHERE ImageName = @ImageName";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ImageFile", imageData ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@ImageName", dryFruits.ImageName);
+                    command.Parameters.AddWithValue("@ImagePath", dryFruits.ImagePath ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Description", dryFruits.Description);
+                    command.Parameters.AddWithValue("@Price", dryFruits.Price);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                return RedirectToAction("Index");
+            }
+            return View(dryFruits);
+        }
+
+        // GET: SpicesEdit/Delete
+        public ActionResult Delete(string imageName)
+        {
+            Spices dryFruits = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT ImageFile, ImageName, ImagePath, Description, Price FROM Spices WHERE ImageName = @ImageName";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ImageName", imageName);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    dryFruits = new Spices
+                    {
+                        ImageName = reader["ImageName"].ToString(),
+                        ImagePath = reader["ImagePath"]?.ToString(),
+                        Description = reader["Description"].ToString(),
+                        Price = Convert.ToInt32(reader["Price"])
+                    };
+                    if (reader["ImageFile"] != DBNull.Value)
+                    {
+                        byte[] imageData = (byte[])reader["ImageFile"];
+                        string base64String = Convert.ToBase64String(imageData);
+                        dryFruits.ImagePath = "data:image/png;base64," + base64String;
+                    }
+                }
+                connection.Close();
+            }
+            return View(dryFruits);
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
         }
 
         // POST: SpicesEdit/Delete
@@ -170,6 +320,7 @@ namespace webappd.Controllers
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ImageName", imageName);
 
+<<<<<<< HEAD
                 try
                 {
                     connection.Open();
@@ -220,5 +371,13 @@ namespace webappd.Controllers
             }
             return spice;
         }
+=======
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            return RedirectToAction("Index");
+        }
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
     }
 }

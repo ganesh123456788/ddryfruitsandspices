@@ -1,0 +1,65 @@
+﻿@model webappd.Models.DryFruits
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <h2>Checkout</h2>
+
+    <p>Product: @Model.ImageName</p>
+    <p>Price: Rs.@Model.Price</p>
+
+    <form id="payment-form">
+        <button type="button" id="rzp-button1">Pay with Razorpay</button>
+    </form>
+
+    <script>
+        document.getElementById('rzp-button1').onclick = function(e){
+            fetch('/RazorpayPayment/CreateOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({ amount: @Model.Price })
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var options = {
+                    "key": "your-key-id", // Replace with your Key ID
+                    "amount": @Model.Price * 100, // Amount in paise
+                    "currency": "INR",
+                    "name": "Your Company Name",
+                    "description": "Test Transaction",
+                    "order_id": data.orderId,
+                    "handler": function (response){
+                        window.location.href = "/RazorpayPayment/Success";
+                    },
+                    "prefill": {
+                        "name": "Customer Name",
+                        "email": "customer@example.com",
+                        "contact": "9999999999"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+                e.preventDefault();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,10 +1,18 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "F:\\webappd\\",
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{B4BFF0A6-2C8D-44B6-ADD9-88BBACE70044}|webappd\\webappd.csproj|f:\\webappd\\webappd\\controllers\\chocolateeditcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4BFF0A6-2C8D-44B6-ADD9-88BBACE70044}|webappd\\webappd.csproj|solutionrelative:webappd\\controllers\\chocolateeditcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+  "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\webappd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4BFF0A6-2C8D-44B6-ADD9-88BBACE70044}|webappd\\webappd.csproj|C:\\Users\\DELL\\source\\repos\\webappd\\webappd\\views\\dryfruitsdisplay\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B4BFF0A6-2C8D-44B6-ADD9-88BBACE70044}|webappd\\webappd.csproj|solutionrelative:webappd\\views\\dryfruitsdisplay\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
     }
   ],
   "DocumentGroupContainers": [
@@ -19,6 +27,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "ChocolateEditController.cs",
               "DocumentMoniker": "F:\\webappd\\webappd\\Controllers\\ChocolateEditController.cs",
               "RelativeDocumentMoniker": "webappd\\Controllers\\ChocolateEditController.cs",
@@ -27,6 +36,16 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-22T04:57:14.144Z",
+=======
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\webappd\\webappd\\Views\\DryFruitsDisplay\\Index.cshtml",
+              "RelativeDocumentMoniker": "webappd\\Views\\DryFruitsDisplay\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\webappd\\webappd\\Views\\DryFruitsDisplay\\Index.cshtml",
+              "RelativeToolTip": "webappd\\Views\\DryFruitsDisplay\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-05T07:24:45.126Z",
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef
               "EditorCaption": ""
             }
           ]

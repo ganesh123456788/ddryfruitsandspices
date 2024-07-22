@@ -77,6 +77,7 @@ C:\Users\DELL\source\repos\webappd\webappd\obj\Debug\webappd.csproj.CoreCompileI
 C:\Users\DELL\source\repos\webappd\webappd\obj\Debug\webappd.csproj.Up2Date
 C:\Users\DELL\source\repos\webappd\webappd\obj\Debug\webappd.dll
 C:\Users\DELL\source\repos\webappd\webappd\obj\Debug\webappd.pdb
+<<<<<<< HEAD
 C:\Users\DELL\Downloads\webappd\webappd\bin\webappd.dll.config
 C:\Users\DELL\Downloads\webappd\webappd\bin\webappd.dll
 C:\Users\DELL\Downloads\webappd\webappd\bin\webappd.pdb
@@ -246,3 +247,5 @@ F:\webappd\webappd\bin\System.Threading.Tasks.Extensions.xml
 F:\webappd\webappd\bin\BouncyCastle.Crypto.dll
 F:\webappd\webappd\bin\Razorpay.dll
 F:\webappd\webappd\bin\BouncyCastle.Crypto.xml
+=======
+>>>>>>> 4d609a7fb8a5ad14181800e5b77cd95aaf2b7aef

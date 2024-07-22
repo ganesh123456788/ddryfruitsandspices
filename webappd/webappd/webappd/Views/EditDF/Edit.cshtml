@@ -1,0 +1,113 @@
+﻿@model webappd.Models.DryFruits
+@{
+    ViewBag.Title = "Edit DryFruits";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Spice</title>
+    <style>
+        /* Your custom styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="file"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                box-sizing: border-box;
+            }
+
+            .form-group input[type="submit"] {
+                padding: 10px 20px;
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .form-group input[type="submit"]:hover {
+                    background-color: #45a049;
+                }
+
+        img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit DryFruit</h2>
+
+        @using (Html.BeginForm("Edit", "EditDF", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImageName)
+                @Html.EditorFor(model => model.ImageName)
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Current Image")
+                <img src="@Url.Content(Model.ImagePath)" alt="@Model.ImageName" />
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Upload New Image")
+                <input type="file" name="ImageFile" id="ImageFile" />
+            </div>
+            <div class="form-group">
+                @Html.Label("Image Description")
+                <input type="file" name="ImageFile" id="ImageFile" />
+            </div>
+            <div class="form-group">
+                @Html.Label("Image Price")
+                <input type="file" name="ImageFile" id="ImageFile" />
+            </div>
+
+            @Html.Hidden("Index", "DryFruitEdit")
+
+            <div class="form-group">
+                <input type="submit" value="Save" />
+            </div>
+        }
+    </div>
+</body>
+</html>
